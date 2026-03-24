@@ -11,4 +11,10 @@ const getFoods = asyncHandler(async(req,res)=>{
     res.status(200).json({msg:"data fetch",data : foods})
 })
 
-module.exports = {addFoodItem,getFoods}
+const getFoodByUserId = asyncHandler(async(req,res) =>{
+    const foods = await foodModel.find({restaurant : req.params.id});
+    res.status(200).json({msg :"Food items find!!"})
+})
+
+
+module.exports = {addFoodItem,getFoods, getFoodByUserId}

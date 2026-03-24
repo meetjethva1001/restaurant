@@ -3,7 +3,7 @@ const {asyncHandler} = require("../utils/asyncHandler")
 
 const isLoggedIn = asyncHandler((req ,res, next) =>{
     const token = req.cookies.accessToken;
-    if(!token) return res.status(401).json({msg : "Unauthorize"});
+    if(!token) return res.status(401).json({msg : "Unauthorize , Please Login first!!"});
     try{
         const decodeToken = verifyToken(token);
         req.user = decodeToken;

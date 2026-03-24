@@ -1,4 +1,5 @@
-const restaurantModel = require("../models/restaurantModel")
+const mongoose = require("mongoose");
+const restaurantModel = require ("../models/restaurantModel")
 const {asyncHandler} = require("../utils/asyncHandler")
 
 const addRestaurant = asyncHandler(async(req,res) =>{
@@ -63,4 +64,11 @@ const findByRegex = asyncHandler(async (req,res) =>{
     res.status(200).json({msg : "restaurant find!!" , data : data})
 })
 
-module.exports = {addRestaurant ,averageRatings,showFoodItems, updateRest, deleteRest, findByRegex}
+const findByUserId = asyncHandler(async (req,res) =>{
+    const response = await restaurantModel.find({user : req.params.id});
+    if(response.length <= 0) return res.status(200).json({msg:"restaurant not found for you!! , please add restaurants.."})
+    // console.log(response.user)
+    res.status(200).json({msg : "restaurant find!!" , data : response})
+})
+
+module.exports = {addRestaurant ,averageRatings,showFoodItems, updateRest, deleteRest, findByRegex, findByUserId} 

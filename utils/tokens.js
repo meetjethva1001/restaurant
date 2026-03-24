@@ -6,7 +6,7 @@ const generateAccessToken = (user) =>{
         email : user.email,
         role : user.role
     }
-    const accessToken = jwt.sign(accessTokenPayLoad , process.env.ACCESS_TOKEN_SECRET , {expiresIn : '30s'});
+    const accessToken = jwt.sign(accessTokenPayLoad , process.env.ACCESS_TOKEN_SECRET , {expiresIn : '30m'});
     return accessToken;
 }
 

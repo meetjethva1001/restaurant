@@ -9,5 +9,5 @@ const authorizeUser = (req,res,next) =>{
         return res.status(401).json({msg : "Unauthorize Access"})
     }
     next()
-}
+} 
 module.exports = {authorizeUser}

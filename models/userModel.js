@@ -36,14 +36,6 @@ const userSchema = new mongoose.Schema({
         required: true,
         default : "user"
     },
-    ratings : {
-        type : String,
-        required : true
-    },
-    registerDate : {
-        type : Date,
-        required : true
-    }
 },{timestamps : true})
 
 //For password Hashing (Using pre schema method)
