@@ -61,13 +61,13 @@ const deleteRest = asyncHandler(async (req,res) =>{
 
 const findByRegex = asyncHandler(async (req,res) =>{
     const data = await restaurantModel.find({ restaurant_name : { $regex : "i$" , $options : "i" } })
-    res.status(200).json({msg : "restaurant find!!" , data : data})
+    res.status(200).jsonn({msg : "restaurant find!!" , data : data})
 })
 
 const findByUserId = asyncHandler(async (req,res) =>{
     const response = await restaurantModel.find({user : req.params.id});
     if(response.length <= 0) return res.status(200).json({msg:"restaurant not found for you!! , please add restaurants.."})
-    // console.log(response.user)
+    // console.log(response.user)   
     res.status(200).json({msg : "restaurant find!!" , data : response})
 })
 

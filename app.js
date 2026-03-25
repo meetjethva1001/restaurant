@@ -13,10 +13,16 @@ app.use(userRoutes)
 app.use(foodRoutes)
 app.use(restaurantRoutes)
 
-app.use((err,req,res,next) =>{
+app.use((err, req, res, next) => {
     let status = err.status || 500;
-    let msg = err.message || 'internel server error';
-    res.status(status).json({msg : msg});
-})
+    let msg = err.message || 'Internal server error';
+
+    if (err.name === 'CastError' || err.name === 'BSONTypeError') {
+        msg = 'ObjectId Mismatch error';
+        status = 400; 
+    }
+    res.status(status).json({ msg });
+});
+
 
 app.listen(process.env.PORT , (req,res)=> console.log(`server started`));
